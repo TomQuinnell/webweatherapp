@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MainMenuComponent } from './main-menu.component';
 import { MainMenuRoutingModule } from './main-menu-routing.module';
+import {BigWeatherSummaryModule} from "../weather-summary/big-weather-summary/big-weather-summary.module";
 
 
 
@@ -11,7 +12,8 @@ import { MainMenuRoutingModule } from './main-menu-routing.module';
   ],
   imports: [
     CommonModule,
-    MainMenuRoutingModule
+    MainMenuRoutingModule,
+    BigWeatherSummaryModule
   ]
 })
 export class MainMenuModule { }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {WeatherLocation} from "../forecast/WeatherLocation";
 
 @Component({
   selector: 'app-main-menu',
@@ -6,8 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main-menu.component.css']
 })
 export class MainMenuComponent implements OnInit {
-
-  constructor() { }
+  public london: WeatherLocation;
+  constructor() {
+    this.london = new WeatherLocation("London", 42, 42);
+  }
 
   ngOnInit(): void {
   }

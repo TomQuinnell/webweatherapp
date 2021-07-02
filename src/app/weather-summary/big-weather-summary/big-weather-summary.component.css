@@ -1,0 +1,23 @@
+.picture {
+  float: left;
+  margin-right: 20px;
+}
+
+.summary {
+  text-align: left;
+}
+
+.title {
+  float: top;
+  text-align: center;
+}
+
+.labelledPicture {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.summaryContainer {
+  float: left;
+}
