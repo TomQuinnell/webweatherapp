@@ -3,11 +3,11 @@ import {ForecastAtTime} from "../../forecast/ForecastAtTime";
 import {WeatherLocation} from "../../forecast/WeatherLocation";
 
 @Component({
-  selector: 'app-big-weather-summary',
-  templateUrl: './big-weather-summary.component.html',
-  styleUrls: ['./big-weather-summary.component.css']
+  selector: 'app-big-snapshot',
+  templateUrl: './big-snapshot.component.html',
+  styleUrls: ['./big-snapshot.component.css']
 })
-export class BigWeatherSummaryComponent implements OnInit {
+export class BigSnapshotComponent implements OnInit {
   @Input() location!: WeatherLocation;
   constructor() {
   }

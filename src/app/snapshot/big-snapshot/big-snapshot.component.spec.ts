@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BigWeatherSummaryComponent } from './big-weather-summary.component';
+import { BigSnapshotComponent } from './big-snapshot.component';
 
-describe('BigWeatherSummaryComponent', () => {
-  let component: BigWeatherSummaryComponent;
-  let fixture: ComponentFixture<BigWeatherSummaryComponent>;
+describe('BigSnapshotComponent', () => {
+  let component: BigSnapshotComponent;
+  let fixture: ComponentFixture<BigSnapshotComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BigWeatherSummaryComponent ]
+      declarations: [ BigSnapshotComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BigWeatherSummaryComponent);
+    fixture = TestBed.createComponent(BigSnapshotComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

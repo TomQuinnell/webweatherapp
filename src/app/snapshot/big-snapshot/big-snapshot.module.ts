@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BigWeatherSummaryComponent } from './big-weather-summary.component';
+import { BigSnapshotComponent } from './big-snapshot.component';
 
 
 
 @NgModule({
     declarations: [
-        BigWeatherSummaryComponent
+        BigSnapshotComponent
     ],
     exports: [
-        BigWeatherSummaryComponent
+        BigSnapshotComponent
     ],
     imports: [
         CommonModule
     ]
 })
-export class BigWeatherSummaryModule { }
+export class BigSnapshotModule { }

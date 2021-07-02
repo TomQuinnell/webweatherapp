@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import {RouterModule, Routes} from "@angular/router";
-import {SnapshotComponent} from "./snapshot.component";
+import {SummaryComponent} from "./summary.component";
 
-const routes: Routes = [{ path: '', component: SnapshotComponent }];
+const routes: Routes = [{ path: '', component: SummaryComponent }];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class SnapshotRoutingModule { }
+export class SummaryRoutingModule { }

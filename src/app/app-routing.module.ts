@@ -8,13 +8,13 @@ const routes: Routes = [
     loadChildren: () => import('./main-menu/main-menu.module').then(m => m.MainMenuModule)
   },
   {
-    path: 'snapshot',
+    path: 'summary',
     /* TODO Guards??
     canActivate: [SimulationGuard],
     canLoad: [SimulationGuard],
     canDeactivate: [SimulationGuard],
     */
-    loadChildren: () => import('./snapshot/snapshot.module').then(m => m.SnapshotModule)
+    loadChildren: () => import('./summary/summary.module').then(m => m.SummaryModule)
   },
   {
     path: '**',
