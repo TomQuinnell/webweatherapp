@@ -1,0 +1,12 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav-content>
+    <mat-toolbar color="primary" class="main-toolbar mat-elevation-z8">
+      <ng-container>
+        <!-- TODO add back button -->
+        <button mat-raised-button color="accent" routerLink="/snapshot">Snapshot</button>
+        <button mat-raised-button color="accent" routerLink="/menu">Menu</button>
+      </ng-container>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
