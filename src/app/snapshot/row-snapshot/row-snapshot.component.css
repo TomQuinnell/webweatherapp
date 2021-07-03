@@ -1,0 +1,9 @@
+.picture {
+  float: left;
+  margin-right: 20px;
+}
+
+.summaryText {
+  text-align: left;
+  font-size: x-large;
+}

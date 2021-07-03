@@ -1,0 +1,16 @@
+<div class="snapshotContainer">
+  <div class="labelledPicture">
+    <div class="picture">
+      <img [src]=getPictureURL(this.forecast,true) alt="ICON">
+    </div>
+    <div class="summary">
+      <p class="summaryText">
+        Temp: {{this.forecast.temp ? this.forecast.temp: "...."}}
+        Cloud: {{this.forecast.cloudCoverage ? this.forecast.cloudCoverage: "...."}}
+        Rain: {{this.forecast.rain ? this.forecast.rain: "...."}}
+        Humidity: {{this.forecast.humidity ? this.forecast.humidity: "...."}}
+        Wind speed: {{this.forecast.windSpeed ? this.forecast.windSpeed: "...."}}
+      </p>
+    </div>
+  </div>
+</div>

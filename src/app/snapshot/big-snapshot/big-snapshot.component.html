@@ -2,9 +2,10 @@
   <div class="title">
     {{this.location.name}} {{this.location.latlon}}
   </div>
+  <br>
   <div class="labelledPicture">
     <div class="picture">
-      <img [src]=getPictureURL(this.currentForecast) alt="ICON">
+      <img [src]=getPictureURL(this.currentForecast,false) alt="ICON">
     </div>
     <div class="summary">
       Temp: {{this.currentForecast.temp}}<br>

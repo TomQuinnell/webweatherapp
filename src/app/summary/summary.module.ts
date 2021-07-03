@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SummaryComponent } from './summary.component';
 import {SummaryRoutingModule} from "./summary-routing.module";
+import {RowSnapshotModule} from "../snapshot/row-snapshot/row-snapshot.module";
 
 
 
@@ -9,9 +10,10 @@ import {SummaryRoutingModule} from "./summary-routing.module";
   declarations: [
     SummaryComponent
   ],
-  imports: [
-    CommonModule,
-    SummaryRoutingModule
-  ]
+    imports: [
+        CommonModule,
+        SummaryRoutingModule,
+        RowSnapshotModule
+    ]
 })
 export class SummaryModule { }

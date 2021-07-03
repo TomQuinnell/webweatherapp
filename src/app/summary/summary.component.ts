@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ForecastAtTime} from "../forecast/ForecastAtTime";
 
 @Component({
   selector: 'app-summary',
@@ -6,8 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./summary.component.css']
 })
 export class SummaryComponent implements OnInit {
-
-  constructor() { }
+  test: ForecastAtTime;
+  constructor() {
+    this.test = new ForecastAtTime();
+    this.test.update(42, 42, 42, 42, 42, new Date())
+  }
 
   ngOnInit(): void {
   }
