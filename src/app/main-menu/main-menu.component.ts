@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {WeatherLocation} from "../forecast/WeatherLocation";
+import {WeatherLocation} from "../location/WeatherLocation";
 
 @Component({
   selector: 'app-main-menu',

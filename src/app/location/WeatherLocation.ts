@@ -1,5 +1,5 @@
-import {ForecastAtTime} from "./ForecastAtTime";
-import {ForecastComposite} from "./ForecastComposite";
+import {ForecastAtTime} from "../forecast/ForecastAtTime";
+import {ForecastComposite} from "../forecast/ForecastComposite";
 
 export class WeatherLocation {
   private _name: string;
