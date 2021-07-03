@@ -10,6 +10,7 @@ export class MainMenuComponent implements OnInit {
   public london: WeatherLocation;
   constructor() {
     this.london = new WeatherLocation("London", 42, 42);
+    this.london.currentForecast.update(42, 42, 42, 42, 42, new Date());
   }
 
   ngOnInit(): void {

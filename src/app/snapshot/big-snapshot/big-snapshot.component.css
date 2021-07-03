@@ -5,11 +5,14 @@
 
 .summary {
   text-align: left;
+  font-size: x-large;
 }
 
 .title {
   float: top;
   text-align: center;
+  font-weight: bold;
+  font-size: xx-large;
 }
 
 .labelledPicture {
