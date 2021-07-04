@@ -63,7 +63,7 @@ export class ForecastAtTime extends Forecast{
 
   public update(temp: number, cloudCoverage: number, rain: number, humidity: number, windSpeed: number, time: Date) {
     this._temp = temp;
-    this._cloudCoverage = temp;
+    this._cloudCoverage = cloudCoverage;
     this._rain = rain;
     this._humidity = humidity;
     this._windSpeed = windSpeed;

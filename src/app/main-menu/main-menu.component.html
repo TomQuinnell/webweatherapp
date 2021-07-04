@@ -1,1 +1,12 @@
-<app-big-snapshot [location]="london"></app-big-snapshot>
+<div class="wrapper">
+  <div class="currentSnapshot">
+    <app-big-snapshot [location]="currentLocation"></app-big-snapshot>
+  </div>
+  <br>
+  <div class="rowSnapshot" *ngFor="let loc of recent; let i = index; even as e">
+    <div *ngIf="e">
+      <app-big-snapshot [location]="recent[i]"></app-big-snapshot>
+      <app-big-snapshot [location]="recent[i + 1]"></app-big-snapshot>
+    </div>
+  </div>
+</div>

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MainMenuComponent } from './main-menu.component';
 import { MainMenuRoutingModule } from './main-menu-routing.module';
 import {BigSnapshotModule} from "../snapshot/big-snapshot/big-snapshot.module";
+import {MatGridListModule} from "@angular/material/grid-list";
 
 
 
@@ -13,7 +14,8 @@ import {BigSnapshotModule} from "../snapshot/big-snapshot/big-snapshot.module";
   imports: [
     CommonModule,
     MainMenuRoutingModule,
-    BigSnapshotModule
+    BigSnapshotModule,
+    MatGridListModule
   ]
 })
 export class MainMenuModule { }

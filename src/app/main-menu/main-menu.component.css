@@ -1,0 +1,11 @@
+.currentSnapshot {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.rowSnapshot {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
