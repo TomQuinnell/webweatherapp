@@ -3,6 +3,12 @@
     <app-big-snapshot [location]="location"></app-big-snapshot>
   </div>
   <br>
+  <div class="switchButtonDiv">
+    <button class="switchButton" (click)="swapComposite()">
+      {{isTwelve ? "7 day" : "12 Hour"}}
+    </button>
+  </div>
+  <br>
   <div class="compositeSnapshot" *ngFor="let forecastRow of compositeForecast.forecasts">
     <app-row-snapshot [forecast]="forecastRow"></app-row-snapshot>
   </div>

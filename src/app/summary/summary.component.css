@@ -4,6 +4,16 @@
   align-items: center;
 }
 
+.switchButtonDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.switchButton {
+  font-size: large;
+}
+
 .compositeSnapshot {
   display: flex;
   justify-content: center;
