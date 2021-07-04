@@ -20,7 +20,7 @@ export class SummaryComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this._location = this.weatherService.snapshotLocation;
+    this._location = this.weatherService.summaryLocation;
     this._currentForecast = this.location.currentForecast;
     this._compositeForecast = this.location.twelveHour;
     this._isTwelve = true;

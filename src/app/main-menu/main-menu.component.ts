@@ -17,8 +17,6 @@ export class MainMenuComponent implements OnInit {
   ngOnInit(): void {
     this._currentLocation = this.weatherService.currentLocation;
     this._recent = this.weatherService.recent;
-    this.weatherService.addLocation("random", Math.round(Math.random() * 4), Math.round(Math.random() * 4));
-    this.currentLocation.currentForecast.update(Math.random() * 80, 1, 1, 1, 1, new Date());
   }
 
 

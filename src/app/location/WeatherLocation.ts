@@ -2,6 +2,13 @@ import {ForecastAtTime} from "../forecast/ForecastAtTime";
 import {ForecastComposite} from "../forecast/ForecastComposite";
 
 export class WeatherLocation {
+  get lat(): number {
+    return this._lat;
+  }
+
+  get lon(): number {
+    return this._lon;
+  }
   private _name: string;
   private _lat: number;
   private _lon: number;
