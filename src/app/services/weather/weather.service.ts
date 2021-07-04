@@ -6,9 +6,12 @@ import {WeatherLocation} from "../../location/WeatherLocation";
   providedIn: 'root'
 })
 export class WeatherService {
+  get snapshotLocation(): WeatherLocation {
+    return this._snapshotLocation;
+  }
   private _locationCache: LocationCache;
   private readonly _currentLocation: WeatherLocation;
-
+  private _snapshotLocation: WeatherLocation;
 
   constructor() {
     this._locationCache = new LocationCache();
@@ -17,6 +20,8 @@ export class WeatherService {
     this._locationCache.add("2_2", "Paris");
     this._locationCache.add("3_3", "Rome");
     this._locationCache.add("4_4", "Madrid");
+
+    this._snapshotLocation = this.recent[0];
   }
 
   public getFirstK(k: number) {

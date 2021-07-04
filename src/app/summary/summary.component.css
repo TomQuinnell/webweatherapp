@@ -1,0 +1,11 @@
+.currentSnapshot {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.compositeSnapshot {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

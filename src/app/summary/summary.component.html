@@ -1,1 +1,9 @@
-<app-row-snapshot [forecast]="test"></app-row-snapshot>
+<div class="wrapper">
+  <div class="currentSnapshot">
+    <app-big-snapshot [location]="location"></app-big-snapshot>
+  </div>
+  <br>
+  <div class="compositeSnapshot" *ngFor="let forecastRow of compositeForecast.forecasts">
+    <app-row-snapshot [forecast]="forecastRow"></app-row-snapshot>
+  </div>
+</div>
