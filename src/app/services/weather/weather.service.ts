@@ -67,7 +67,6 @@ export class WeatherService {
     + "&exclude=minutely,hourly,daily" + "&appid=" + this._weatherAPIKey)
       .subscribe((data: any) => {
         let current = data.current;
-        console.log(data);
         // TODO rain!
         forecast.update(Math.round(current.temp - 273), current.clouds, 0, current.humidity,
           current.wind_speed, WeatherService.dtToDate(current.dt))
