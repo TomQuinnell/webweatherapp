@@ -8,7 +8,7 @@ export class ForecastComposite extends Forecast{
     super();
     this._forecasts = new Array<ForecastAtTime>();
     for (let i = 0; i < size; i++) {
-      this._forecasts.push(new ForecastAtTime());
+      this._forecasts.push(new ForecastAtTime(size === 12 ? "hour" : "day"));
     }
   }
 

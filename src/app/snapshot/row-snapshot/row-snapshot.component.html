@@ -5,10 +5,10 @@
     </div>
     <div class="summary">
       <p class="summaryText">
-        {{this.forecast.timeOfForecast ? this.forecast.timeOfForecast.getTime() : "00:00"}}
+        {{this.forecast.timeOfForecast ? this.forecast.getTimeString() : "00:00"}}
         Temp: {{this.forecast.temp ? this.forecast.temp: "...."}}
-        Cloud: {{this.forecast.cloudCoverage ? this.forecast.cloudCoverage: "...."}}
-        Rain: {{this.forecast.rain ? this.forecast.rain: "...."}}
+        Cloud: {{this.forecast.cloudCoverage ? round(this.forecast.cloudCoverage): "...."}}
+        Rain: {{this.forecast.rain ? round(this.forecast.rain): "...."}}
         Humidity: {{this.forecast.humidity ? this.forecast.humidity: "...."}}
         Wind speed: {{this.forecast.windSpeed ? this.forecast.windSpeed: "...."}}
       </p>

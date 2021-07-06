@@ -24,11 +24,17 @@ export class SummaryComponent implements OnInit {
     this._currentForecast = this.location.currentForecast;
     this._compositeForecast = this.location.twelveHour;
     this._isTwelve = true;
+    this.weatherService.fetchSummary(this.location).then();
   }
 
   public swapComposite() {
     this._compositeForecast = this.isTwelve ? this.location.sevenDay : this.location.twelveHour;
     this._isTwelve = !this.isTwelve;
+    if (this.isTwelve) {
+      this.weatherService.updateTwelveHour(this.location).then();
+    } else {
+      this.weatherService.updateSevenDay(this.location).then();
+    }
   }
 
   get location(): WeatherLocation {

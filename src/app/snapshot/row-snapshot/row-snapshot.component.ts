@@ -16,4 +16,8 @@ export class RowSnapshotComponent extends Snapshot implements OnInit {
   ngOnInit(): void {
   }
 
+  round(x: number) {
+    return Math.round(x);
+  }
+
 }

@@ -29,7 +29,7 @@ export class WeatherService {
     this._summaryLocation = this.recent[0];
 
     this.getAPIKeys()
-      .then(() => this.updateForecast(this.currentLocation, this.currentLocation.currentForecast))
+      .then(() => this.updateForecast(this.currentLocation))
       .then(() => this.updateRecent());
   }
 
@@ -58,34 +58,81 @@ export class WeatherService {
   }
 
   private static dtToDate(dt: string): Date {
-    return new Date(dt);
+    return new Date(Number.parseInt(dt) * 1000);
   }
 
-  public async updateForecast(location: WeatherLocation, forecast: ForecastAtTime) {
-    // TODO freshness
-    this.http.get(this._weatherURL + "onecall?lat=" + location.lat + "&lon=" + location.lon
-    + "&exclude=minutely,hourly,daily" + "&appid=" + this._weatherAPIKey)
-      .subscribe((data: any) => {
-        let current = data.current;
-        // TODO rain!
-        forecast.update(Math.round(current.temp - 273), current.clouds, 0, current.humidity,
-          current.wind_speed, WeatherService.dtToDate(current.dt))
-      });
+  public async updateForecast(location: WeatherLocation) {
+    let forecast: ForecastAtTime = location.currentForecast;
+    if (forecast.timeOfForecast === undefined || forecast.isOld()) {
+      this.http.get(this._weatherURL + "onecall?lat=" + location.lat + "&lon=" + location.lon
+        + "&exclude=minutely,hourly,daily" + "&appid=" + this._weatherAPIKey)
+        .subscribe((data: any) => {
+          let current = data.current;
+          // TODO rain!
+          forecast.update(Math.round(current.temp - 273), current.clouds, 0, current.humidity,
+            current.wind_speed, WeatherService.dtToDate(current.dt))
+        });
+    }
   }
 
-  public async updateTwelveHour(twelveHour: ForecastComposite) {
-
+  public async updateTwelveHour(location: WeatherLocation) {
+    let twelveHour: ForecastComposite = location.twelveHour;
+    if (twelveHour.timeOfQuery === undefined || twelveHour.isOld() || twelveHour.isDifferentDay()) {
+      this.http.get(this._weatherURL + "onecall?lat=" + location.lat + "&lon=" + location.lon
+        + "&exclude=current,minutely,daily" + "&appid=" + this._weatherAPIKey)
+        .subscribe((data: any) => {
+          let hourly = data.hourly;
+          let temps: Array<number> = [];
+          let clouds: Array<number> = [];
+          let rains: Array<number> = [];
+          let humiditys: Array<number> = [];
+          let windSpeeds: Array<number> = [];
+          let times: Array<Date> = [];
+          for (let i = 0; i < 12; i++) {
+            let hourForecast = hourly[i + 1];
+            temps.push(Math.round(hourForecast.temp - 273));
+            clouds.push(hourForecast.clouds ? hourForecast.clouds : 0.0001);
+            rains.push(hourForecast.rain ? hourForecast.rain : 0.0001);
+            humiditys.push(hourForecast.humidity);
+            windSpeeds.push(hourForecast.wind_speed);
+            times.push(WeatherService.dtToDate(hourForecast.dt));
+          }
+          twelveHour.update(temps, clouds, rains, humiditys, windSpeeds, times);
+        });
+    }
   }
 
-  public async updateSevenDay(sevenDay: ForecastComposite) {
-
+  public async updateSevenDay(location: WeatherLocation) {
+    let sevenDay: ForecastComposite = location.sevenDay;
+    if (sevenDay.timeOfQuery === undefined || sevenDay.isOld() || sevenDay.isDifferentDay()) {
+      this.http.get(this._weatherURL + "onecall?lat=" + location.lat + "&lon=" + location.lon
+        + "&exclude=current,minutely,hourly" + "&appid=" + this._weatherAPIKey)
+        .subscribe((data: any) => {
+          let daily = data.daily;
+          let temps: Array<number> = [];
+          let clouds: Array<number> = [];
+          let rains: Array<number> = [];
+          let humiditys: Array<number> = [];
+          let windSpeeds: Array<number> = [];
+          let times: Array<Date> = [];
+          for (let i = 0; i < 7; i++) {
+            let dayForecast = daily[i + 1];
+            temps.push(Math.round(dayForecast.temp.day - 273));
+            clouds.push(dayForecast.clouds ? dayForecast.clouds : 0.0001);
+            rains.push(dayForecast.rain ? dayForecast.rain : 0.0001);
+            humiditys.push(dayForecast.humidity);
+            windSpeeds.push(dayForecast.wind_speed);
+            times.push(WeatherService.dtToDate(dayForecast.dt));
+          }
+          sevenDay.update(temps, clouds, rains, humiditys, windSpeeds, times);
+        });
+    }
   }
 
   private async updateRecent(): Promise<void> {
     return new Promise<void>(() => {
         for (let location of this.recent) {
-          console.log(location.name);
-          this.updateForecast(location, location.currentForecast);
+          this.updateForecast(location);
         }
       }
     );
@@ -93,8 +140,8 @@ export class WeatherService {
 
   public async fetchSummary(location: WeatherLocation) {
     this._summaryLocation = location;
-    await this.updateForecast(location, location.currentForecast);
-    await this.updateTwelveHour(location.twelveHour);
+    await this.updateForecast(location);
+    await this.updateTwelveHour(location);
   }
 
   get summaryLocation(): WeatherLocation {

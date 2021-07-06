@@ -54,10 +54,12 @@ export class ForecastAtTime extends Forecast{
   private _humidity: number | undefined;
   private _windSpeed: number | undefined;
   private _timeOfForecast: Date | undefined;
+  private readonly _timeFormat;
   private isLoading: boolean;
 
-  constructor() {
+  constructor(timeFormat: string = "current") {
     super();
+    this._timeFormat = timeFormat;
     this.isLoading = true;
   }
 
@@ -68,6 +70,19 @@ export class ForecastAtTime extends Forecast{
     this._humidity = humidity;
     this._windSpeed = windSpeed;
     this._timeOfForecast = time;
+  }
+
+  public getTimeString() {
+    if (this.timeOfForecast === undefined) {
+      return "";
+    }
+    if (this._timeFormat === "current") {
+      return this.timeOfForecast.toTimeString();
+    } else if (this._timeFormat === "hour") {
+      return this.timeOfForecast.getHours() + ":00";
+    } else {
+      return this.timeOfForecast.toDateString();
+    }
   }
 
 }
