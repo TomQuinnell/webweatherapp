@@ -5,7 +5,7 @@ import {ForecastAtTime} from "../../forecast/ForecastAtTime";
 import {ForecastComposite} from "../../forecast/ForecastComposite";
 import {HttpClient} from "@angular/common/http";
 import {map} from "rxjs/operators";
-import {NamedObject} from "../../searcher/searcher.component";
+import {SearchItem} from "../../searcher/searcher.component";
 import {of} from "rxjs";
 
 @Injectable({
@@ -57,7 +57,7 @@ export class WeatherService {
   }
 
   public addLocation(name: string, lat: number, lon: number) {
-    this._locationCache.add(lat.toString() + "_" + lon.toString(), name);
+    return this._locationCache.add(lat.toString() + "_" + lon.toString(), name.split(',')[0]);
   }
 
   private static dtToDate(dt: string): Date {
@@ -152,11 +152,7 @@ export class WeatherService {
       return of([]);
     }
     // TODO cleanQuery??
-    return this.http.get<Array<NamedObject>>(this._searchURL + "search.json?key=" + this._searchAPIKey + "&q=" + term)
-      .pipe(map((arr: NamedObject[]) =>
-        arr.map(
-          (obj: NamedObject) => obj.name
-        )));
+    return this.http.get<Array<SearchItem>>(this._searchURL + "search.json?key=" + this._searchAPIKey + "&q=" + term);
   }
 
   get summaryLocation(): WeatherLocation {

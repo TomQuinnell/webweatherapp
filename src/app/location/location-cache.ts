@@ -8,6 +8,11 @@ export class LocationCache {
   constructor() { }
 
   private cons(location: WeatherLocation, inRecents: boolean, toHead: boolean) {
+    // remove duplicates
+    if (inRecents) {
+      this.recent = this.recent.filter(item => item !== location);
+    }
+
     // add to head or end
     if (toHead) {
       this.recent.unshift(location);
@@ -15,11 +20,6 @@ export class LocationCache {
       if (this.recent.length < this.capacity) {
         this.recent.push(location);
       }
-    }
-
-    // remove duplicates
-    if (inRecents) {
-      this.recent.filter(item => item !== location || this.recent.indexOf(item) !== this.recent.lastIndexOf(item));
     }
 
     // chop down to capacity
@@ -34,9 +34,10 @@ export class LocationCache {
 
   public add(latlon: string, locationName: string) {
     // first check cache
+    let location: WeatherLocation | undefined;
     if (this.cache.has(latlon)) {
       // must also be in recent, get and move to front
-      let location: WeatherLocation | undefined = this.cache.get(latlon);
+      location = this.cache.get(latlon);
       if (location === undefined) {
         throw new Error("Not in cache but in cache adding " + locationName + " at " + latlon);
       }
@@ -46,7 +47,7 @@ export class LocationCache {
       let split: Array<string> = latlon.split('_');
       let lat = Number.parseFloat(split[0]);
       let lon = Number.parseFloat(split[1]);
-      let location: WeatherLocation = new WeatherLocation(locationName, lat, lon);
+      location = new WeatherLocation(locationName, lat, lon);
 
       // add to cache and recent
       this.cache.set(latlon, location);
@@ -54,6 +55,7 @@ export class LocationCache {
       // add to recents
       this.cons(location, false, true);
     }
+    return location;
   }
 
   public findLocation(latlon: string, locationName: string, addToHead: boolean): WeatherLocation {
@@ -92,5 +94,9 @@ export class LocationCache {
 
   get recent(): Array<WeatherLocation> {
     return this._recent;
+  }
+
+  set recent(arr: Array<WeatherLocation>) {
+    this._recent = arr;
   }
 }

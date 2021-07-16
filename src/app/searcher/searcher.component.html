@@ -1,4 +1,7 @@
 <fieldset>
 <input id="searcher" type="text" class="form-control mx-sm-3"
-       [(ngModel)]="model" [ngbTypeahead]="search" placeholder="Search..."/>
+       [(ngModel)]="model" [ngbTypeahead]="search"
+       [resultFormatter]="formatter"
+       (selectItem)="itemSelected($event)"
+       placeholder="Search..."/>
 </fieldset>
