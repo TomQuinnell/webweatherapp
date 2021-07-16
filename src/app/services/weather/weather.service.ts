@@ -4,6 +4,9 @@ import {WeatherLocation} from "../../location/WeatherLocation";
 import {ForecastAtTime} from "../../forecast/ForecastAtTime";
 import {ForecastComposite} from "../../forecast/ForecastComposite";
 import {HttpClient} from "@angular/common/http";
+import {map} from "rxjs/operators";
+import {NamedObject} from "../../searcher/searcher.component";
+import {of} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +17,7 @@ export class WeatherService {
   private _summaryLocation: WeatherLocation;
   private _searchAPIKey!: string;
   private _weatherAPIKey!: string;
-  private _searchURL: string = "";
+  private _searchURL: string = "http://api.weatherapi.com/v1/";
   private _weatherURL: string = "https://api.openweathermap.org/data/2.5/";
 
   constructor(
@@ -142,6 +145,18 @@ export class WeatherService {
     this._summaryLocation = location;
     await this.updateForecast(location);
     await this.updateTwelveHour(location);
+  }
+
+  public search(term: string) {
+    if (term === "") {
+      return of([]);
+    }
+    // TODO cleanQuery??
+    return this.http.get<Array<NamedObject>>(this._searchURL + "search.json?key=" + this._searchAPIKey + "&q=" + term)
+      .pipe(map((arr: NamedObject[]) =>
+        arr.map(
+          (obj: NamedObject) => obj.name
+        )));
   }
 
   get summaryLocation(): WeatherLocation {
