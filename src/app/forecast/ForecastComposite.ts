@@ -15,6 +15,7 @@ export class ForecastComposite extends Forecast{
   public update (temps: Array<number>, clouds: Array<number>, rains: Array<number>, humiditys: Array<number>,
                  windSpeeds: Array<number>, times: Array<Date>): void {
     this.timeOfQuery = new Date();
+    console.log(rains);
     for (let i = 0; i < this._forecasts.length; i++) {
       this._forecasts[i].update(temps[i], clouds[i], rains[i], humiditys[i], windSpeeds[i], times[i]);
     }

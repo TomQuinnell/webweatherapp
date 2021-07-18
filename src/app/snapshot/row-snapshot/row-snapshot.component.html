@@ -8,7 +8,7 @@
         {{this.forecast.timeOfForecast ? this.forecast.getTimeString() : "00:00"}}
         Temp: {{this.forecast.temp ? this.forecast.temp: "...."}}
         Cloud: {{this.forecast.cloudCoverage ? round(this.forecast.cloudCoverage): "...."}}
-        Rain: {{this.forecast.rain ? round(this.forecast.rain): "...."}}
+        Rain: {{this.forecast.rain ? round(this.forecast.rain * 100) / 100: "...."}}
         Humidity: {{this.forecast.humidity ? this.forecast.humidity: "...."}}
         Wind speed: {{this.forecast.windSpeed ? this.forecast.windSpeed: "...."}}
       </p>

@@ -84,6 +84,7 @@ export class WeatherService {
       this.http.get(this._weatherURL + "onecall?lat=" + location.lat + "&lon=" + location.lon
         + "&exclude=current,minutely,daily" + "&appid=" + this._weatherAPIKey)
         .subscribe((data: any) => {
+          console.log(data);
           let hourly = data.hourly;
           let temps: Array<number> = [];
           let clouds: Array<number> = [];
@@ -95,7 +96,7 @@ export class WeatherService {
             let hourForecast = hourly[i + 1];
             temps.push(Math.round(hourForecast.temp - 273));
             clouds.push(hourForecast.clouds ? hourForecast.clouds : 0.0001);
-            rains.push(hourForecast.rain ? hourForecast.rain : 0.0001);
+            rains.push(hourForecast.rain ? hourForecast.rain["1h"] : 0.0001);
             humiditys.push(hourForecast.humidity);
             windSpeeds.push(hourForecast.wind_speed);
             times.push(WeatherService.dtToDate(hourForecast.dt));
