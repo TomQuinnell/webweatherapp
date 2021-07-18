@@ -100,14 +100,3 @@ export class LocationCache {
     this._recent = arr;
   }
 }
-
-
-// TODO
-/*
-Move search bar to nav
-Search bar in nav if in summary
-Remove Summary from nav
-Space stuff out
-Remove lat lon from locations
-Fix images if I cba
- */

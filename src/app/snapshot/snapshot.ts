@@ -18,7 +18,7 @@ export class Snapshot {
       let cloudyLevel: number = 40.0;
       let isCloudy: boolean = forecast.cloudCoverage > cloudyLevel;
 
-      let rainyLevel: number = 0.0;
+      let rainyLevel: number = 0.1;
       let isRainy: boolean = forecast.rain > rainyLevel;
 
       if (isRainy) {
