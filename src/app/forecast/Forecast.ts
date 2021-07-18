@@ -1,3 +1,8 @@
+/*
+  A Superclass for Forecasts
+  Holds the time of query
+  And some logic for checking if Forecast is outdated
+ */
 export class Forecast {
   private _timeOfQuery!: Date | undefined;
   private static readonly maxMSBeforeNew: number = 60000;

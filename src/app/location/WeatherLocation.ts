@@ -1,6 +1,10 @@
 import {ForecastAtTime} from "../forecast/ForecastAtTime";
 import {ForecastComposite} from "../forecast/ForecastComposite";
 
+/*
+  A Location
+  With a latitude and longitude
+ */
 export class WeatherLocation {
   get lat(): number {
     return this._lat;
@@ -9,12 +13,12 @@ export class WeatherLocation {
   get lon(): number {
     return this._lon;
   }
-  private _name: string;
-  private _lat: number;
-  private _lon: number;
-  private _currentForecast: ForecastAtTime;
-  private _twelveHour: ForecastComposite;
-  private _sevenDay: ForecastComposite;
+  private readonly _name: string;
+  private readonly _lat: number;
+  private readonly _lon: number;
+  private readonly _currentForecast: ForecastAtTime;
+  private readonly _twelveHour: ForecastComposite;
+  private readonly _sevenDay: ForecastComposite;
 
   constructor(name: string, lat: number, lon: number) {
     this._name = name;

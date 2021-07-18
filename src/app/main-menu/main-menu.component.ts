@@ -7,6 +7,11 @@ import {WeatherService} from "../services/weather/weather.service";
   templateUrl: './main-menu.component.html',
   styleUrls: ['./main-menu.component.css']
 })
+/*
+  The Main menu
+  Holds a snapshot for the MOCK user location
+  And the snapshots for the recent locations
+ */
 export class MainMenuComponent implements OnInit {
   private _currentLocation!: WeatherLocation;
   private _recent!: Array<WeatherLocation>;

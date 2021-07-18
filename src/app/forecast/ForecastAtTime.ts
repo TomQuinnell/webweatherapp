@@ -1,6 +1,48 @@
 import {Forecast} from "./Forecast";
 
+
+/*
+  A Forecast at a certain time
+  Holds a bunch of weather data
+ */
 export class ForecastAtTime extends Forecast{
+  private _temp: number | undefined;
+  private _cloudCoverage: number | undefined;
+  private _rain: number | undefined;
+  private _humidity: number | undefined;
+  private _windSpeed: number | undefined;
+  private _timeOfForecast: Date | undefined;
+  private readonly _timeFormat;  // A string describing which format the datetime should be displayed
+  private isLoading: boolean;
+
+  constructor(timeFormat: string = "current") {
+    super();
+    this._timeFormat = timeFormat;
+    this.isLoading = true;
+  }
+
+  public update(temp: number, cloudCoverage: number, rain: number, humidity: number, windSpeed: number, time: Date) {
+    this._temp = temp;
+    this._cloudCoverage = cloudCoverage;
+    this._rain = rain;
+    this._humidity = humidity;
+    this._windSpeed = windSpeed;
+    this._timeOfForecast = time;
+  }
+
+  public getTimeString() {
+    if (this.timeOfForecast === undefined) {
+      return "";
+    }
+    if (this._timeFormat === "current") {
+      return this.timeOfForecast.toTimeString();
+    } else if (this._timeFormat === "hour") {
+      return this.timeOfForecast.getHours() + ":00";
+    } else {
+      return this.timeOfForecast.toDateString();
+    }
+  }
+
   get temp(): number | undefined {
     return this._temp;
   }
@@ -48,41 +90,4 @@ export class ForecastAtTime extends Forecast{
   set timeOfForecast(value: Date | undefined) {
     this._timeOfForecast = value;
   }
-  private _temp: number | undefined;
-  private _cloudCoverage: number | undefined;
-  private _rain: number | undefined;
-  private _humidity: number | undefined;
-  private _windSpeed: number | undefined;
-  private _timeOfForecast: Date | undefined;
-  private readonly _timeFormat;
-  private isLoading: boolean;
-
-  constructor(timeFormat: string = "current") {
-    super();
-    this._timeFormat = timeFormat;
-    this.isLoading = true;
-  }
-
-  public update(temp: number, cloudCoverage: number, rain: number, humidity: number, windSpeed: number, time: Date) {
-    this._temp = temp;
-    this._cloudCoverage = cloudCoverage;
-    this._rain = rain;
-    this._humidity = humidity;
-    this._windSpeed = windSpeed;
-    this._timeOfForecast = time;
-  }
-
-  public getTimeString() {
-    if (this.timeOfForecast === undefined) {
-      return "";
-    }
-    if (this._timeFormat === "current") {
-      return this.timeOfForecast.toTimeString();
-    } else if (this._timeFormat === "hour") {
-      return this.timeOfForecast.getHours() + ":00";
-    } else {
-      return this.timeOfForecast.toDateString();
-    }
-  }
-
 }

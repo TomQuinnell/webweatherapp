@@ -1,12 +1,17 @@
 import {ForecastAtTime} from "../forecast/ForecastAtTime";
 
+/*
+  A Superclass for the Snapshot Components
+ */
 export class Snapshot {
   private static insertSmallness(resource: string, isSmall: boolean) {
+    // insert the string Small if isSmall into the resource URL
     let split = resource.split('.');
     return split[0] + (isSmall ? "Small" : "") + '.' + split[1];
   }
 
   getPictureURL(forecast: ForecastAtTime, isSmall: boolean) {
+    // get Picture URL from /assets/ depending on Forecast's weather
     let pictureDir = "/assets/";
     let picture;
     if (forecast.temp === undefined || forecast.cloudCoverage === undefined || forecast.rain === undefined) {

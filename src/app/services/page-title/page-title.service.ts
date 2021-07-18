@@ -8,6 +8,9 @@ type PageTitle = 'Main Menu' | 'Snapshot';
 @Injectable({
   providedIn: 'root'
 })
+/*
+  A service to get page titles
+ */
 export class PageTitleService {
   private readonly _title$ = new ReplaySubject<PageTitle>();
   readonly title$ = this._title$.pipe(distinctUntilChanged());

@@ -9,6 +9,12 @@ import {ForecastComposite} from "../forecast/ForecastComposite";
   templateUrl: './summary.component.html',
   styleUrls: ['./summary.component.css']
 })
+/*
+  The Summary screen for a particular Location
+  Holds a Snapshot of the current Forecast
+  And a Forecast Composite (12 hour or 7 day)
+  And a button to switch between the 2 Composites
+ */
 export class SummaryComponent implements OnInit {
   private _location!: WeatherLocation;
   private _currentForecast!: ForecastAtTime;

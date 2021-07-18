@@ -1,5 +1,10 @@
 import {WeatherLocation} from "./WeatherLocation";
 
+
+/*
+  An interface for creating and managing Locations
+  Holds a cache of recent Locations
+ */
 export class LocationCache {
   private _cache: Map<string, WeatherLocation> = new Map<string, WeatherLocation>();
   private _recent: Array<WeatherLocation> = new Array<WeatherLocation>();
