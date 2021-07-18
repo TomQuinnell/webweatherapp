@@ -4,7 +4,6 @@ import {WeatherLocation} from "../../location/WeatherLocation";
 import {ForecastAtTime} from "../../forecast/ForecastAtTime";
 import {ForecastComposite} from "../../forecast/ForecastComposite";
 import {HttpClient} from "@angular/common/http";
-import {map} from "rxjs/operators";
 import {SearchItem} from "../../searcher/searcher.component";
 import {of} from "rxjs";
 
@@ -19,6 +18,7 @@ export class WeatherService {
   private _weatherAPIKey!: string;
   private _searchURL: string = "http://api.weatherapi.com/v1/";
   private _weatherURL: string = "https://api.openweathermap.org/data/2.5/";
+  private _isMainMenu: boolean = true;
 
   constructor(
     private http: HttpClient
@@ -165,5 +165,13 @@ export class WeatherService {
 
   get recent(): Array<WeatherLocation> {
     return this.getFirstK(4);
+  }
+
+  get isMainMenu(): boolean {
+    return this._isMainMenu;
+  }
+
+  set isMainMenu(value: boolean) {
+    this._isMainMenu = value;
   }
 }

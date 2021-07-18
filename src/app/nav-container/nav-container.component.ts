@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
 import {PageTitleService} from "../services/page-title/page-title.service";
 import {WeatherService} from "../services/weather/weather.service";
 
@@ -10,7 +10,7 @@ import {WeatherService} from "../services/weather/weather.service";
 export class NavContainerComponent implements OnDestroy {
   readonly title$ = this.pageTitleService.title$;
   constructor(private readonly pageTitleService: PageTitleService,
-              private readonly weatherService: WeatherService) { }
+              readonly weatherService: WeatherService) { }
 
   ngOnDestroy(): void { }
 

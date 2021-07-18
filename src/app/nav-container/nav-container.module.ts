@@ -5,6 +5,7 @@ import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatButtonModule} from "@angular/material/button";
 import {RouterModule} from "@angular/router";
+import {SearcherModule} from "../searcher/searcher.module";
 
 
 
@@ -15,13 +16,14 @@ import {RouterModule} from "@angular/router";
     exports: [
         NavContainerComponent
     ],
-  imports: [
+    imports: [
 
-    CommonModule,
-    MatSidenavModule,
-    MatToolbarModule,
-    MatButtonModule,
-    RouterModule
-  ]
+        CommonModule,
+        MatSidenavModule,
+        MatToolbarModule,
+        MatButtonModule,
+        RouterModule,
+        SearcherModule
+    ]
 })
 export class NavContainerModule { }

@@ -2,9 +2,10 @@
   <mat-sidenav-content>
     <mat-toolbar color="primary" class="main-toolbar mat-elevation-z8">
       <ng-container>
-        <!-- TODO add back button -->
-        <button mat-raised-button color="accent" routerLink="/summary">Summary</button>
-        <button mat-raised-button color="accent" routerLink="/menu">Menu</button>
+        <button mat-raised-button color="accent" routerLink="/menu" (click)="weatherService.isMainMenu = true">Menu</button>
+        <div *ngIf="weatherService.isMainMenu" class="searchbar" >
+          <app-searcher></app-searcher>
+        </div>
       </ng-container>
     </mat-toolbar>
     <router-outlet></router-outlet>

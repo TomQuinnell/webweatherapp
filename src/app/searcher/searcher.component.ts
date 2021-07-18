@@ -38,6 +38,7 @@ export class SearcherComponent implements OnInit {
     let item: SearchItem = $event.item;
     let newLocation: WeatherLocation = this.service.addLocation(item.name, item.lat, item.lon);
     this.service.fetchSummary(newLocation);
+    this.service.isMainMenu = false;
     this.router.navigate(["/summary"]).then();
   }
 
